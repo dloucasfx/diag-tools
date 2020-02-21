@@ -9,6 +9,7 @@ def print_item(group):
     print("\tId: {}".format(group.id))
     print("\tLocation: {}".format(group.location))
     print("\tTags: {}".format(group.tags))
+    print("\tType: {}".format(group.type))
     print_properties(group.properties)
 
 
@@ -37,5 +38,5 @@ if __name__ == "__main__":
     )
 
     client = ResourceManagementClient(credentials, subscription_id)
-    for item in client.resource_groups.list():
+    for item in client.resources.list():
         print_item(item)
