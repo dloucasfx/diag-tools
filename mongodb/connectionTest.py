@@ -1,5 +1,5 @@
+import os
 import pymongo
-
 
 try:
     input = raw_input
@@ -7,8 +7,22 @@ except NameError:
     pass
 host = input("Enter mongoDB host: ")
 port = input("Enter mongoDB port: ")
+
+def get_extra_options():
+    d = {}
+    if "ssl_ca_certs" in os.environ:
+      d["ssl_ca_certs"]=os.environ["ssl_ca_certs"]
+    #Add more when needed  
+    return d
+
+
+options = get_extra_options()
+if len(options) > 0:
+  print("Additional Options %s" % options)
+
 try:
-    client = pymongo.MongoClient(host, int(port))
+    options = get_extra_options()
+    client = pymongo.MongoClient(host, int(port), **options)
 except Exception as e:
     print("Failed to connect to host %s port %s" % (host, port))
     print(e)
