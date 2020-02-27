@@ -57,11 +57,11 @@ pymongo.errors.ServerSelectionTimeoutError: saassa:12334: [Errno -2] Name or ser
 ## Additional Options:
 
 You can pass additional options as environmental variables.
-Currently, only `ssl_ca_certs` is supported.
+The following options are supported: `ssl_ca_certs`, `ssl` and `tlsInsecure`
 
 example using docker:
 ```
-docker run -it --net host -v /path/to/your/local/ca.pem:/test/ca.pem --env ssl_ca_certs=/test/ca.pem dlouca/mongotest:latest bash
+docker run -it --env ssl=True --env tlsInsecure=True --net host dlouca/mongotest:latest bash
 ```
 
 
