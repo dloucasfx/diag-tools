@@ -1,1 +1,1 @@
-pymongo[tls]==3.9.0
+pymongo[tls]==4.18.3
